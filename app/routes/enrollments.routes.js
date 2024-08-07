@@ -37,7 +37,6 @@ router.get('/my-enrollments', verifyToken, async (req, res) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const enrollments = await Enrollment.find({ user: decoded.id }).populate('class');
-    console.log(decoded, enrollments)
     res.status(200).json(enrollments);
   } catch (err) {
     res.status(500).json({ message: 'Error fetching enrolled classes' });

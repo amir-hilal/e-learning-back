@@ -76,7 +76,6 @@ router.delete('/delete/:classId/:filename', verifyToken, isAdmin, async (req, re
 // View files (Public)
 router.get('/view/:filename', (req, res) => {
   const filePath = path.join(uploadDir, req.params.filename);
-  console.log('Fetching file from:', filePath); // Add logging to debug
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
   } else {
